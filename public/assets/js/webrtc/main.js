@@ -113,7 +113,7 @@ function getKeyByValue(value ) {
 function connectSocket(){
     showNotification('Connecting to server...');
     webkitRTCPeerConnection = window.RTCPeerConnection;
-    socket = io.connect('/');
+    socket = io.connect('https://nithinprasad.com:9001/');
     socket.on('connect',function(){
        if(lock){
            login();
