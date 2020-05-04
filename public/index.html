@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Random Chat</title>
+    <meta name="description" content="Random Chat is s random chat application , No login or registration just connect with people around the world">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- theme customizier \ demo only -->
+    <link rel="stylesheet" href="assets/css/theme-customizer.css">
+    <!-- core plugins -->
+    <link rel="stylesheet" href="assets/css/hamburgers.css">
+    <link rel="stylesheet" href="assets/css/perfect-scrollbar.min.css">
+    <link rel="stylesheet" href="assets/css/switchery.min.css">
+    <link rel="stylesheet" href="assets/css/sweetalert.css">
+    <!-- site-wide styles -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/css/site.css">
+    <!-- plugins for the current page -->
+    <link rel="stylesheet" href="assets/css/chartist.min.css">
+    <link rel="stylesheet" href="assets/css/owl.carousel.css">
+    <!-- current page styles -->
+    <link rel="stylesheet" href="assets/css/dashboard.v1.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/material-design-iconic-font.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600">
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script>
+        Breakpoints({
+            xs: {
+                min: 0,
+                max: 575
+            },
+            sm: {
+                min: 576,
+                max: 767
+            },
+            md: {
+                min: 768,
+                max: 991
+            },
+            lg: {
+                min: 992,
+                max: 1199
+            },
+            xl: {
+                min: 1200,
+                max: Infinity
+            }
+        });
+    </script>
+</head>
+
+<body class="menubar-top menubar-light dashboard dashboard-v1">
+    <!--[if lt IE 10]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  <div id="terms" class="terms-overlay">
+      <div class="terms-content">
+          <div class="terms-header">Terms and conditions</div>
+          <div class="wraper">
+            Random Chat is a great way to meet new friends. When you use Random Chat, we pick someone else at random and let you talk one-on-one. To help you stay safe, chats are anonymous unless you tell someone who you are (not suggested!), and you can stop a chat at any time. Predators have been known to use Random Chat, so please be careful.
+          </div>
+          <div class="btn-parent"><button onclick="agreed()" class="btn btn-primary">Agree</button></div>
+      </div>
+  </div>
+  <div id="gender" class="terms-overlay" style="display: none">
+      <div class="terms-content">
+          <div class="terms-header">Choose your gender</div>
+          <div class="gender-div">
+          <input  type="radio" name="gender" value="male"/> Male <input type="radio" name="gender" value="female"/> Female
+          </div>
+          <div class="btn-parent"><button class="btn btn-success" onclick="goRoom()">Go to room</button></div>
+      </div>
+  </div>
+    <nav class="site-navbar navbar fixed-top navbar-expand-lg navbar-dark bg-blue">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="index.html">
+                <svg class="flip-y" xmlns="https://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32">
+                    <path fill="currentColor" d="M30.063 2.585c-.253-1.023-.758-1.754-1.5-2.17-3.28-1.842-9.02 3.577-11.05 6.88-.65 1.06-1.275 2.358-1.792 3.718-1.486-.21-2.95-.098-4.366.337C6.954 12.694 4 16.975 4 22v2c0 4.337 3.663 8 8 8h1.98c5.31 0 9.803-3.664 10.682-8.714.33-1.89.142-3.807-.54-5.585 1.26-1.2 2.43-2.587 3.268-3.886 1.646-2.554 3.46-8.062 2.673-11.23zM12 23c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z" />
+                    <path data-color="color-2" fill="#52c03b" d="M10.77 9.437c1.14-.35 2.32-.527 3.506-.527h.148c.424-.954.888-1.846 1.37-2.633-1.106-2.466-2.56-4.72-4.01-5.71-.7-.477-1.387-.656-2.04-.528-.442.086-1.08.37-1.594 1.23C7 3.19 6.89 7.465 7.457 11.06c1-.7 2.108-1.255 3.312-1.623z" />
+                </svg> <span class="brand-name hidden-fold">Random Chat</span> </a>
+            <a href="javascript:void(0)" class="hidden-md-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+            </a>
+            <button style="display: none;" data-toggle="menubar" class="mr-auto hidden-lg-up hamburger hamburger--collapse js-hamburger" type="button"><span class="hamburger-box"><span class="hamburger-inner"></span></span>
+            </button>
+            <button type="button" class="navbar-toggler hidden-lg-up collapsed" data-toggle="navbar-search"><span class="sr-only">Toggle navigation</span> <span style="display: none;" class="zmdi zmdi-hc-lg zmdi-search"></span></button>
+            <button type="button" class="navbar-toggler hidden-lg-up collapsed" data-toggle="collapse" data-target="#site-navbar-collapse" aria-expanded="false"><span class="sr-only">Toggle navigation</span> <span class="zmdi zmdi-hc-lg zmdi-more"></span></button>
+        </div>
+        <!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="site-navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="nav-icon fa fa-user-o"></i><span class="ml-2 user-count">0</span> -online</a>
+                    
+                    <!-- /.media-list -->
+                </li>
+               
+                <li class="nav-item dropdown" style="display: none;">
+                    <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="nav-img" src="../assets/global/images/flags/United-States-of-America.png" alt=""> 
+                        <span class="nav-text hidden-sm-down ml-2">English</span> 
+                        <i class="nav-caret hidden-sm-down zmdi zmdi-hc-sm zmdi-chevron-down"></i></a>
+                    <div class="dropdown-menu p-0" data-plugin="dropdownCaret"><a class="dropdown-item dropdown-menu-cap">4 Languages</a>
+                        <a class="dropdown-item" href="#"><img src="../assets/global/images/flags/Egypt.png" class="mr-3 dropdown-item-icon" alt=""> <span>Arabic</span> </a>
+                        <a class="dropdown-item" href="#"><img src="../assets/global/images/flags/United-States-of-America.png" class="mr-3 dropdown-item-icon" alt=""> <span>English</span> </a>
+                        <a class="dropdown-item" href="#"><img src="../assets/global/images/flags/Spain.png" class="mr-3 dropdown-item-icon" alt=""> <span>Spanish</span></a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <div style="display: none;" id="navbar-search" class="navbar-search">
+                        <form class="form-inline navbar-search-form">
+                            <input class="form-control navbar-search-field" type="text" placeholder="Search">
+                            <button type="submit" class="navbar-search-submit">
+                                <svg class="svg-search-icon">
+                                    <use xlink:href="../assets/global/svg-sprite/sprite.svg#search" />
+                                </svg>
+                            </button>
+                            <button class="navbar-search-close" data-toggle="navbar-search"><i class="zmdi zmdi-close"></i></button>
+                        </form>
+                        <div class="navbar-search-backdrop" data-toggle="navbar-search"></div>
+                    </div>
+                    <!-- /.navbar-search -->
+                </li>
+                <li id="navbar-search-toggler" class="nav-item hidden-xl-up hidden-sm-down"><a class="nav-link" href="#" data-toggle="navbar-search"><span class="zmdi zmdi-hc-lg zmdi-search"></span></a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link site-user dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img class="nav-img" src="assets/images/user-img.png" alt=""> 
+                        <span class="nav-text hidden-sm-down ml-2">Guest</span> <!--<i class="nav-caret hidden-sm-down zmdi zmdi-hc-sm zmdi-chevron-down"></i>--></a>
+                    <div class="dropdown-menu dropdown-menu-right p-0" data-plugin="dropdownCaret" style="display: none">
+                        <a class="dropdown-item dropdown-menu-cap">Sibi Thomas</a> 
+                        <a class="dropdown-item" href="#"><i class="fa fa-user-o mr-3"></i> <span>My Profile</span> </a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-envelope-o mr-3"></i> <span>My Inbox</span></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#"><i class="fa fa-power-off mr-3"></i> <span>Logout</span></a>
+                    </div>
+                </li>
+            </ul>
+            <!-- /.navbar-nav -->
+        </div>
+        <!-- /.collapse -->
+    </nav>
+    
+    <aside class="site-menubar" style="display: none;">
+    </aside>
+    <!-- /.site-menubar -->
+    <main class="site-main">
+        <div class="site-content">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <header class="card-header">
+                            <h6 class="card-heading">Chat with Strangers</h6>
+                            <ul class="card-toolbar">
+                                <li><a href="javascript:void(0)"><!--<i class="zmdi zmdi-refresh"></i>--></a></li>
+                                <li class="dropdown"><a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="zmdi zmdi-more-vert"></i></a>
+                                    <!--<div class="dropdown-menu float-right"><a class="dropdown-item" href="#">Option 1</a> <a class="dropdown-item" href="#">Option 2</a> <a class="dropdown-item" href="#">Option 3</a></div>-->
+                                </li>
+                            </ul>
+                            <!-- /.card-toolbar -->
+                        </header>
+                        <div>
+                            <div class="d-flex justify-content-end p-2 mb-0">
+                                 <button class="btn stop-btn">Stop</button>
+                                <label><span class="mr-2">Sound Mute</span>
+                                    <input onclick="onMuteChange()" class="mute" type="checkbox" data-plugin="switchery" data-color="#60c84c" data-size="small" checked="checked">
+                                </label>
+                                <label><span class="mr-2">&nbsp;Video Mute</span>
+                                    <input onclick="onVideoEnable()" class="video-enable" type="checkbox" data-plugin="switchery" data-color="#60c84c" data-size="small" checked="checked">
+                                </label>
+                               
+                            </div>
+                            <div>
+                                
+                                <video id="your-video" playsinline autoplay poster="/assets/images/facebook-avatar.jpg" width="100%" height="390"></video>
+                                <video id="my-video" playsinline autoplay poster="/assets/images/avatar.jpg" class="my-video" width="160" height="120" muted></video>
+                                <div class="notification"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+                <div class="col-lg-4">
+                    <div class="card" id="dash1-widget-chat">
+                        <header class="card-header">
+                            <h6 class="card-heading">Chats</h6>
+                            <ul class="card-toolbar">
+                                <!--<li><a href="javascript:void(0)"><i class="zmdi zmdi-refresh"></i></a></li>-->
+                                <li class="dropdown"><a href="javascript:void(0)" data-toggle="dropdown" aria-expanded="false"><i class="zmdi zmdi-more-vert"></i></a>
+                                    <!--<div class="dropdown-menu float-right"><a class="dropdown-item" href="#">Option 1</a> <a class="dropdown-item" href="#">Option 2</a> <a class="dropdown-item" href="#">Option 3</a></div>-->
+                                </li>
+                            </ul>
+                            <!-- /.card-toolbar -->
+                        </header>
+                        <div class="card-body p-0 list-height">
+                            <div class="chat-entries pt-4">
+                                <div class="scroll-container px-4 chat-list">
+                                    
+                                    
+                                </div>
+                                <!-- /.scroll-container -->
+                            </div>
+                            <!-- /.chat-entries -->
+                            
+                        </div>
+                        <!-- /.card-body -->
+                        <div>
+                            
+                                <div class="input-group input-group-lg">
+                                    <div class="smily-pop">
+                                        <i class="em em-smiley"></i>
+                                        <i class="em em-joy"></i>
+                                        <i class="em em-relieved"></i>
+                                        <i class="em em-pensive"></i>
+                                        <i class="em em-neutral_face"></i>
+                                        <i class="em em-no_mouth"></i>
+                                        <i class="em em-mask"></i>
+                                        <i class="em em-laughing"></i>
+                                        <i class="em em-kissing_closed_eyes"></i>
+                                        <i class="em em-kissing_heart"></i>
+                                        <i class="em em-joy"></i>
+                                        <i class="em em-innocent"></i>
+                                        <i class="em em-hushed"></i>
+                                        <i class="em em-heart_eyes"></i>
+                                        <i class="em em-heart_eyes_cat"></i>
+                                        <i class="em em-grimacing"></i>
+                                        <i class="em em-grinning"></i>
+                                        <i class="em em-frowning"></i>
+                                        <i class="em em-disappointed"></i>
+                                        <i class="em em-dizzy_face"></i>
+                                        <i class="em em-cry"></i>
+                                        <i class="em em-confounded"></i>
+                                        <i class="em em-anguished"></i>
+                                        <i class="em em-angry"></i>
+                                        <i class="em em---1"></i>
+                                        <i class="em em--1"></i>
+                                        <i class="em em-back"></i>
+                                        <i class="em em-basketball"></i>
+                                        <i class="em em-boom"></i>
+                                        <i class="em em-blue_heart"></i>
+                                        <i class="em em-bikini"></i>
+                                        <i class="em em-bride_with_veil"></i>
+                                        <i class="em em-checkered_flag"></i>
+                                        <i class="em em-coffee"></i>
+                                        <i class="em em-couple"></i>
+                                        <i class="em em-couplekiss"></i>
+                                        <i class="em em-dog"></i>
+                                        <i class="em em-fire"></i>
+                                        <i class="em em-fuelpump"></i>
+                                        <i class="em em-information_desk_person"></i>
+                                        <i class="em em-leaves"></i>
+                                        <i class="em em-man"></i>
+                                    </div>
+                                    <span class="input-group-btn"><button style="cursor: pointer !important;" class="btn btn-light smiley-but" type="button"><i class="fa fa-smile-o"></i></button> </span>
+                                    <input type="text" class="form-control chat-input" placeholder="Type your message" disabled/><span  class="input-group-btn "><button onclick="sendChat()" class="btn btn-light"><span style="cursor: pointer;" class="fa fa-send-o"></span></button>
+                                    </span>
+                                </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            
+        </div>
+        <!-- /.site-content -->
+        <footer class="site-footer">
+            <div class="mr-auto">
+                <p class="text-primary mb-0">Made With <i class="fa fa-heart text-success"></i> By <a target="_blank" href="https://nithinprasad.com/">Nithin Prasad</a></p>
+            </div>
+            <div><a href="#">Random Chat</a></div>
+        </footer>
+        <!-- /.site-footer -->
+    </main>
+    <!-- /.site-main -->
+    
+    <!-- core plugins -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        if(checkBrowser() == 'Firefox'){
+                jQuery.getScript("assets/js/webrtc/adapter.js");
+        }
+        function checkBrowser(){
+    c = navigator.userAgent.search("Chrome");
+    f = navigator.userAgent.search("Firefox");
+    m8 = navigator.userAgent.search("MSIE 8.0");
+    m9 = navigator.userAgent.search("MSIE 9.0");
+    if (c > -1) {
+        browser = "Chrome";
+    } else if (f > -1) {
+        browser = "Firefox";
+    } else if (m9 > -1) {
+        browser ="MSIE 9.0";
+    } else if (m8 > -1) {
+        browser ="MSIE 8.0";
+    }
+    return browser;
+}
+    </script>
+    <!--<script src="assets/js/webrtc/adapter.js"></script>-->
+    <script src="assets/js/webrtc/main.js"></script>
+</body>
+
+</html>           
+
+
+ <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/perfect-scrollbar.jquery.min.js"></script>
+    <script src="assets/js/switchery.min.js"></script>
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <!--<script src="assets/js/sticky.min.js"></script>-->
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/sweetalert.min.js"></script>
+    <script src="assets/js/jquery.sparkline.min.js"></script>
+    <script src="assets/js/dropdown-caret.js"></script>
+    <script src="assets/js/firstlitter.js"></script>
+    <!-- plugins for the current page -->
+    <script src="assets/js/jquery.flot.min.js"></script>
+    <script src="assets/js/jquery.flot.resize.min.js"></script>
+    <script src="assets/js/jquery.flot.tooltip.min.js"></script>
+    <script src="assets/js/jquery.flot.categories.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!-- site-wide scripts -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/site.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/menubar.js"></script>
+    <!-- current page scripts -->
+    <script src="assets/js/dashboard.v1.js"></script>
