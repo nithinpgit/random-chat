@@ -119,10 +119,124 @@
        #your-video{
         height: calc(100vh - 255px);
        }
-       @media all and (max-width:1000px){
-        .terms-content{
-            width: 90%;  
-            line-height: 30px;
-            margin-top: 60px;
-        }  
+       .showchat{
+            display: none;
+            cursor: pointer;
+            float: left;
         }
+        .hidechat{
+            display: none;
+            cursor: pointer;
+            float: right;
+        }
+       @media (max-width:767px) {
+        #your-video{
+            position: absolute !important;
+            top: 94px !important;
+            z-index: 9;
+            height: calc(100vh - 148px) !important;
+            width: 100% !important;
+        }
+        .my-video {
+            position: fixed !important;
+            bottom: 46px !important;
+            z-index: 9;
+            right: 3px !important;
+        }
+        .site-content{
+            padding: 0px !important;
+            margin-top: -49px !important;
+        }
+        footer{
+            position: fixed !important;
+            bottom: 0px !important;
+            z-index: 99;
+            width: 100% !important;
+        }
+        body{
+            overflow: hidden !important;
+        }
+        #dash1-widget-chat{
+            border: none !important;
+            position: fixed !important;
+            z-index: 99 !important;
+            bottom: 19px !important;
+            display: none;
+            width: 100%;
+        }
+        .list-height {
+            height: 188px !important;
+        }
+        .showchat{
+            display: block;
+        }
+        .hidechat{
+            display: block;
+            font-size: 22px !important;
+        }
+        .card-heading{
+            width: 100%;
+        }
+        .chat-list{
+            height: 162px !important;
+        }
+        .terms-content {
+            width: 100% !important;
+            line-height: 30px !important;
+            margin-top: 0px !important;
+            box-shadow: none !important;
+        }
+        .terms-header{
+            padding: 5px !important;
+            font-weight: 400 !important;
+            text-align: center !important;
+            background: #a70000 !important;
+        }
+        .usercount{
+                position: fixed !important;
+                top: 0px !important;
+                color: #fff !important;
+                font-size: 13px !important;
+                left: -11px !important;
+        }
+        .usercount i{
+            font-size: 13px !important;
+        }
+        #site-navbar-collapse{
+            display: block !important;
+            height: 0px !important;
+        }
+        .nav-img{
+            display: none;
+        }
+        .site-user{
+            display: none;
+        }
+        .collapse{
+            display: none !important;
+        }
+        .gender-div {
+            width: 100%;
+            padding: 8px;
+            text-align: center;
+            font-size: 18px;
+            position: fixed !important;
+            bottom: 70px !important;
+            /* position: fixed; */
+            /* height: 77px; */
+        }
+        .btn-parent{
+            position: fixed !important;
+            bottom: 20px !important;
+        }
+        .enginfo{
+            font-size: 12px !important;
+        }
+        .vdhdr{
+            position: fixed;
+            width: 100%;
+            z-index: 99;
+            background: #fff;
+        }
+       }
+      

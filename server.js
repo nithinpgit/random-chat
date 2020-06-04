@@ -30,7 +30,7 @@ function connectAllPeers(){
   if(freeUsers){
       searchCount++;
       var strict = true;
-      if(searchCount % 15 == 0){
+      if(searchCount % 5 == 0){
           strict = false;
       }
       for(var key in freeUsers){

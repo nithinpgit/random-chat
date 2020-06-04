@@ -84,20 +84,27 @@ $('document').ready(function(){
        $('.chat-input').val($('.chat-input').val()+getKeyByValue(value));
     });
 });
+function showChat(){
+   $('#dash1-widget-chat').show();
+}
+function hideChat(){
+    $('#dash1-widget-chat').hide();
+}
 function agreed(){
     $('#terms').hide();
     $('#gender').show();
 }
 var lock = false;
 function goRoom(){
-     
+    $('#terms').hide();
      gender = $("input[name=gender]:checked").val();
      if(!lock){
-       if(gender){
+         if(!gender){
+             gender = 'male';
+         }
           login();
           lock = true;
           $('#gender').hide();
-       }
         
      }
     
@@ -119,6 +126,7 @@ function connectSocket(){
            login();
        }
        socket.on('onUserCount',function(data){
+           data = parseInt(data)+ 3500+ Math.floor(Math.random() * 100); ;
            $('.user-count').html(data+' ');
        });
        socket.on('message',function(data){
@@ -139,6 +147,7 @@ function connectSocket(){
                         break; 
                     case "onChat":
                         loadChat(data.message,false);
+                        showChat();
                         break; 
                     case "onTyping":
                         showIsTyping();
