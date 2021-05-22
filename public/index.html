@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Omegle Kerala</title>
-    <meta name="description" content="Omegle Kerala is s Omegle Kerala application , No login or registration just connect with people around the world">
+    <meta name="description" content="Omegle Kerala is s Omegle Kerala application , No login or registration just connect with people around the world omeglekerala.com">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- theme customizier \ demo only -->
@@ -63,17 +63,30 @@
       <div class="terms-content">
           <div class="terms-header">Terms and conditions</div>
           <div class="wraper">
-            ഇത് പുതിയ സൃഹൃത്തുക്കളുമായി നേരംപോക്കിന് സംസാരിക്കാനുള്ള വെബ് സൈറ്റ് ആണ്.നിങ്ങളുടെ വ്യക്തി വിവരങ്ങൾ അപരിചിതരോട് ഷെയർ ചെയ്യാതിരിക്കാൻ ശ്രദ്ധിക്കുക  <br/>
-            <span class="enginfo">Omegle Kerala is a great way to meet new friends. When you use Omegle Kerala, we pick someone else at random and let you talk one-to-one. To help you stay safe, chats are anonymous unless you tell someone who you are (not suggested!), and you can stop a chat at any time. Predators have been known to use Omegle Kerala, so please be careful.</span>
+            <span class="enginfo">Omegle Kerala is a great way to meet new friends. When you use Omegle Kerala, we pick someone else at random and let you talk one-to-one. To help you stay safe, chats are anonymous unless you tell someone who you are (not suggested!), and you can stop a chat at any time. Predators have been known to use Omegle Kerala, so please be careful.</br/>Supported Browsers : Google Chrome (For Windows, Mac , Android) , Safari ( For Iphone )</span>
            
             
           </div>
-          <div class="gender-div">
+          <div class="gender-div" style="display: none;">
             <input  type="radio" name="gender" value="male"/> Male <input type="radio" name="gender" value="female"/> Female
             </div>
-          <div class="btn-parent"><button onclick="goRoom()" class="btn btn-primary">Agree</button></div>
+          <div id="agreebtn" style="display: none;" class="btn-parent"><button onclick="goRoom()" class="btn btn-primary">Agree</button></div>
       </div>
   </div>
+
+  <div id="device" class="terms-overlay" style="display: none;">
+    <div class="terms-content">
+        <div class="terms-header">CAM MIC PERMISSION</div>
+        <div class="wraper">
+          <span class="enginfo">CAMERA AND MICROPHONE PERMISSIONS ARE DENIED IN YOUR BROWSER. PLEASE ALLOW PERMISION TO USE THIS WEBSITE...TRY TO USE GOOGLE CHROME BROWSER IF FACE ANY ISSUE</span>
+          <img src="/assets/images/cam.png" style="width: 100%;"/>
+         
+          
+        </div>
+       
+        <div class="btn-parent"><button onclick="cancelDeviceError()" class="btn btn-primary">Cancel</button></div>
+    </div>
+</div>
   <div id="gender" class="terms-overlay" style="display: none">
       <div class="terms-content">
           <div class="terms-header">Choose your gender</div>
@@ -283,7 +296,7 @@
         <!-- /.site-content -->
         <footer class="site-footer">
             <div class="mr-auto">
-                <p class="text-primary mb-0"><i title="show chat" style="cursor: pointer;font-size: 18px;" class="fa fa-comment showchat" onclick="showChat()"></i> &nbsp;&nbsp; Made With <i class="fa fa-heart text-success"></i> By <a target="_blank" href="https://nithinprasad.com/">nithin</a></p>
+                <p class="text-primary mb-0"><i title="show chat" style="cursor: pointer;font-size: 18px;" class="fa fa-comment showchat" onclick="showChat()"></i> &nbsp;&nbsp; Made With <i class="fa fa-heart text-success"></i> By <a target="_blank">nithin</a></p>
             </div>
             <div><a href="#">Omegle Kerala</a></div>
         </footer>
@@ -293,7 +306,7 @@
     
     <!-- core plugins -->
     <script src="assets/js/jquery.min.js"></script>
-    <script src="https://nithinprasad.com:9001/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script>
         if(checkBrowser() == 'Firefox'){
                 jQuery.getScript("assets/js/webrtc/adapter.js");
@@ -321,7 +334,7 @@
         }
     </script>
     <!--<script src="assets/js/webrtc/adapter.js"></script>-->
-    <script src="assets/js/webrtc/main.js?t=35435"></script>
+    <script src="assets/js/webrtc/main.js?t=45353"></script>
 </body>
 
 </html>           
@@ -352,3 +365,12 @@
     <script src="assets/js/menubar.js"></script>
     <!-- current page scripts -->
     <script src="assets/js/dashboard.v1.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168641113-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-168641113-1');
+    </script>

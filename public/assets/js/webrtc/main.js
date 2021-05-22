@@ -64,8 +64,9 @@ var lastChated;
 var lastChatId = 0;
 var gender     = false;
 $('document').ready(function(){
-    $('video').playsInline = true;
     connectSocket();
+    $('video').playsInline = true;
+    
     $('.smiley-but').click(function(){
         smylyPopClicked = true;
         $('.smily-pop').fadeIn();
@@ -97,17 +98,12 @@ function agreed(){
 var lock = false;
 function goRoom(){
     $('#terms').hide();
-     gender = $("input[name=gender]:checked").val();
+     //gender = $("input[name=gender]:checked").val();
      if(!lock){
-         if(!gender){
-             gender = 'male';
-         }
+          gender = 'male';
           login();
           lock = true;
-          $('#gender').hide();
-        
      }
-    
 }
 function getKeyByValue(value ) {
     for( var prop in smileys ) {
@@ -120,10 +116,11 @@ function getKeyByValue(value ) {
 function connectSocket(){
     showNotification('Connecting to server...');
     webkitRTCPeerConnection = window.RTCPeerConnection;
-    socket = io.connect('https://nithinprasad.com:9001/');
+    socket = io.connect('/');
     socket.on('connect',function(){
+        $('#agreebtn').show();
        if(lock){
-           login();
+        login();
        }
        socket.on('onUserCount',function(data){
            data = parseInt(data)+ 3500+ Math.floor(Math.random() * 100); ;
@@ -143,7 +140,12 @@ function connectSocket(){
                         }
                         break; 
                     case "triggerCall": 
-                        call(data.callerName); 
+                        if(myConnection){
+                            call(data.callerName)
+                        }else{
+                            setTimeout(call,5000,data.callerName); 
+                        }
+                        
                         break; 
                     case "onChat":
                         loadChat(data.message,false);
@@ -189,8 +191,22 @@ var localvideo;
 var remotevideo;
 var stream;
 function publish(){
+         console.log('accessing media..');
          navigator.getUserMedia({ video: true, audio: true },function(mediaStream){
+         console.log('Media success..');
          stream = mediaStream;
+         /*
+         try{
+            onVideoEnable();
+         }catch(e){
+            console.log('CONTROL VIDEO VIDO ERROR ...');
+         }
+         try{
+            onVideoEnable();
+         }catch(e){
+            console.log('CONTROL AUDIO VIDO ERROR ...');
+         }
+         */
          localvideo = document.getElementById('my-video');
          remotevideo = document.getElementById('your-video');
          localvideo.setAttribute("playsinline", true);
@@ -204,6 +220,7 @@ function publish(){
             remotevideo.removeAttribute("controls");
         });
          //localvideo.src = window.URL.createObjectURL(stream);
+         
          localvideo.srcObject = stream;
          localvideo.play();
          myConnection = new webkitRTCPeerConnection(configuration);
@@ -227,7 +244,8 @@ function publish(){
          }; 
          setTimeout(captureImage,2000,'my');
     },function(error){
-
+          //alert('CAMERA AND MIC PERMISSION IS DENIED IN YOUR BROWSER. PLEASE ALLOW PERMISION TO USE THIS WEBSITE');
+          $('#device').show();
     });
 }
 var onIceCandidate  = function(event){
@@ -237,6 +255,7 @@ var onIceCandidate  = function(event){
 function call(callename){
     yourname = callename;
         if(yourname){
+        if(myConnection){
            myConnection.createOffer(function (offer) { 
                //if (compatibility.isSafari && compatibility.major >= 11) {
                     if (offer.offerToReceiveAudio) {
@@ -258,6 +277,29 @@ function call(callename){
                     name: "a" 
                 }); 
             });
+        }else{
+            /*
+            $('.stop-btn').attr('disabled','disabled');
+            send({ 
+               type: "iamLeaving", 
+               name: "a" 
+            }); 
+           setTimeout(()=>{
+                tryingForNew = true;
+                send({ 
+                    type: "iamLeaving", 
+                    name: "a" 
+                }); 
+                $('.stop-btn').attr('disabled','disabled');
+                setTimeout(connectSocket,1000);
+           },1000)
+           */
+          console.log('PEER CONNECTION IS NULL')
+           
+
+
+
+        }
         }else{
            send({ 
             type: "iamLeaving", 
@@ -296,10 +338,11 @@ function handleLeave() {
    yourname = null; 
    var remotevideo = document.getElementById('your-video');
    remotevideo.src = null; 
-	
-   myConnection.close(); 
-   myConnection.onicecandidate = null; 
-   myConnection.onaddstream = null;
+	if(myConnection){
+        myConnection.close(); 
+        myConnection.onicecandidate = null; 
+        myConnection.onaddstream = null;
+    }
    showNotification('You have disconnected.');
    $('.chat-input').attr('disabled','disabled');
    $('.chat-list').html('');
@@ -350,7 +393,7 @@ function onMuteChange(){
    }
 }
 function onVideoEnable(){
-    var val = $('.video-enable').is(":checked");
+   var val = $('.video-enable').is(":checked");
    if(val){
       controlVideo(true,stream);
    }else{
@@ -368,6 +411,9 @@ function controlAudio(bool,streamObj){
         streamObj.getAudioTracks().forEach(function (track) {
             track.enabled = !!bool;
         });
+}
+function cancelDeviceError(){
+    $('#device').hide();
 }
 $(document).keyup(function(e) {
      if (e.keyCode == 27) { // escape key maps to keycode `27`

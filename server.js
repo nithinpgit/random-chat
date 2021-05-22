@@ -82,7 +82,7 @@ function connectAllPeers(){
 function findPair(gender,id,strict){
      for(var key in freeUsers){
          var SelectedUser = freeUsers[key];
-         if(SelectedUser.id != id && genderMap[SelectedUser.id] != gender){
+         if(SelectedUser.id != id){ //&& genderMap[SelectedUser.id] != gender
              return SelectedUser;
          }
       }
